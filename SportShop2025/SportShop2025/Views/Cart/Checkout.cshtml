@@ -1,0 +1,97 @@
+﻿@model SportShop2025.ViewModel.CheckoutViewModel
+
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center text-uppercase fw-bold">💳 Thanh toán đơn hàng</h2>
+    <br />
+    <br />
+    <div class="row">
+        <!-- Form thanh toán -->
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-body p-4">
+                    <h4 class="fw-bold">Thông tin thanh toán</h4>
+                    <form method="post">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Họ và tên</label>
+                            <input type="text" asp-for="FullName" class="form-control" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Email</label>
+                            <input type="email" asp-for="Email" class="form-control" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Số điện thoại</label>
+                            <input type="text" asp-for="Phone" class="form-control" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Địa chỉ</label>
+                            <input type="text" asp-for="Address" class="form-control" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Hình thức thanh toán</label>
+                            <select asp-for="PaymentMethod" class="form-select">
+                                <option value="COD">Thanh toán khi nhận hàng (COD)</option>
+                                <option value="Online">Chuyển khoản ngân hàng</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-success w-100 fw-bold">
+                            <i class="bi bi-credit-card"></i> Xác nhận đặt hàng
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-body p-4">
+                    <h4 class="fw-bold">Sản phẩm trong đơn hàng</h4>
+                    <hr>
+
+                    @if (Model.Cart.Items.Count == 0)
+                    {
+                        <p class="text-center text-danger fw-bold">Giỏ hàng của bạn đang trống! 😢</p>
+                    }
+                    else
+                    {
+                        <ul class="list-group">
+                            @foreach (var item in Model.Cart.Items)
+                            {
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center">
+                                        <img src="@item.Image" alt="@item.ProductName" class="rounded-3 me-3" style="width: 50px; height: 50px;">
+                                        <span>@item.ProductName</span>
+                                    </div>
+                                    <span class="badge bg-primary">@item.Quantity x $@item.Price.ToString("N2")</span>
+                                </li>
+                            }
+                        </ul>
+
+                        <hr>
+                        <div class="d-flex justify-content-between">
+                            <span class="fw-bold">Tổng cộng:</span>
+                            <span class="fw-bold text-danger fs-5">$@Model.Cart.Total.ToString("N2")</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<br />
+
+<br />
+
+<br />

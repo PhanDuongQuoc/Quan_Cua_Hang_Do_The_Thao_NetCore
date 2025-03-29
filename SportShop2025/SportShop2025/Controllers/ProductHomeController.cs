@@ -26,6 +26,8 @@ namespace SportShop2025.Controllers
             var model = new HomeViewModel
             {
                 slides = db.Slides?.ToList() ?? new List<Slide>(), // Kiểm tra NULL trước
+                videos = db.Videos.Take(2).ToList() ?? new List<Video>(),
+                blogs = db.Blogs.Take(4).ToList() ?? new List<Blog>(),
                 products = products
             };
 

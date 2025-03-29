@@ -1,0 +1,14 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container text-center mt-5">
+    <h2 class="text-success fw-bold">Đặt hàng thành công!</h2>
+    <p class="fs-5">Mã đơn hàng của bạn là: <strong>@ViewData["OrderId"]</strong></p>
+
+    <a href="@Url.Action("Index", "ProductHome")" class="btn btn-primary mt-3">
+        Tiếp tục mua sắm 🛍️
+    </a>
+</div>
+
+<br />

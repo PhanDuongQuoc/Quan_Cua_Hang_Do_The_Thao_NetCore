@@ -1,0 +1,40 @@
+﻿@model SportShop2025.Data.Order
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="product-container">
+    <h4 class="product-title">Order Detail</h4>
+    <hr />
+    <dl class="product-details row">
+        <dt class="product-label col-sm-2">
+            @Html.DisplayNameFor(model => model.OrderDate)
+        </dt>
+        <dd class="product-value col-sm-10">
+            @Html.DisplayFor(model => model.OrderDate)
+        </dd>
+        <dt class="product-label col-sm-2">
+            @Html.DisplayNameFor(model => model.TotalAmount)
+        </dt>
+        <dd class="product-value col-sm-10">
+            @Html.DisplayFor(model => model.TotalAmount)
+        </dd>
+        <dt class="product-label col-sm-2">
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd class="product-value col-sm-10">
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+        <dt class="product-label col-sm-2">
+            @Html.DisplayNameFor(model => model.Customer)
+        </dt>
+        <dd class="product-value col-sm-10">
+            @Html.DisplayFor(model => model.Customer.FullName)
+        </dd>
+    </dl>
+</div>
+
+<div class="product-actions">
+    <a asp-action="Edit" asp-route-id="@Model?.OrderId" class="btn btn-edit">Edit</a> |
+    <a asp-action="ListOrder" class="btn btn-back">Back to List</a>
+</div>

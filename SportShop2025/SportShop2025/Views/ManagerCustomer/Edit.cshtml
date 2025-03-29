@@ -1,0 +1,64 @@
+﻿@model SportShop2025.Data.Customer
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h4>Customer</h4>
+<hr />
+
+@if (ViewBag.SuccessMessage != null)
+{
+    <div class="alert-success SuccessMessage">
+        @ViewBag.SuccessMessage
+    </div>
+}
+@if (ViewBag.MessageNoDelete != null)
+{
+    <div class="alert-success MessageNoDelete">
+        @ViewBag.MessageNoDelete
+    </div>
+}
+
+<div class="container-add">
+    <div class="form-container">
+        <form asp-action="ConfirmEdit" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="CustomerId" />
+            <div class="form-group">
+                <label asp-for="FullName" class="control-label"></label>
+                <input asp-for="FullName" class="input-field" />
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="input-field" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label"></label>
+                <input asp-for="Phone" class="input-field" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="input-field" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RegistrationDate" class="control-label"></label>
+                <input asp-for="RegistrationDate" class="input-field" />
+                <span asp-validation-for="RegistrationDate" class="text-danger"></span>
+            </div>
+            <div class="form-group btn-container">
+                <input type="submit" value="Save" class="btn-submit" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="back-link">
+    <a asp-action="ListCustomer">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

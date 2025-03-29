@@ -1,0 +1,37 @@
+﻿@model IEnumerable<SportShop2025.Data.Order>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="container">
+    <h2>Order List</h2>
+    <br />
+    <table class="table" value="@ViewBag.Data">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.OrderDate)</th>
+                <th>@Html.DisplayNameFor(model => model.TotalAmount)</th>
+                <th>@Html.DisplayNameFor(model => model.Status)</th>
+                <th>@Html.DisplayNameFor(model => model.Customer)</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.OrderDate)</td>
+                    <td>@Html.DisplayFor(modelItem => item.TotalAmount)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Customer.FullName)</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.OrderId" class="btn btn-edit">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.OrderId" class="btn btn-details">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.OrderId" class="btn btn-delete">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+    <a asp-action="Create" class="btn-create">Create New Order</a>
+</div>

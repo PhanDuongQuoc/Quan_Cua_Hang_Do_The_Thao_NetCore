@@ -1,0 +1,103 @@
+﻿@model SportShop2025.ViewModel.HomeViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="row">
+     
+        <div class="col-lg-3">
+            <div class="bg-light p-4 rounded shadow-lg">
+                <h4 class="text-primary fw-bold text-center">📝 Bài Viết Mới</h4>
+                <hr class="border-primary">
+
+                @foreach (var blog in Model.blogs.Take(3))
+                {
+                    <div class="mb-3">
+                        <h6 class="fw-bold"><a href="/Blog/Details/@blog.Id" class="text-decoration-none text-dark">@blog.Title</a></h6>
+                        <p class="text-muted fs-6"><i class="bi bi-calendar"></i>Ngày đăng: @blog.CreatedAt</p>
+                        <hr>
+                    </div>
+                }
+            </div>
+        </div>
+
+        
+        <div class="col-lg-6">
+            <div class="text-center mb-5">
+                <h1 class="fw-bold text-primary">🎥 Danh Sách Video</h1>
+                <p class="text-muted fs-5">Khám phá những video hay nhất được cập nhật liên tục!</p>
+                <hr class="w-50 mx-auto border-primary">
+            </div>
+
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                @foreach (var video in Model.videos)
+                {
+                    <div class="col">
+                        <div class="card h-100 shadow-lg border-0 rounded-4">
+                            <div class="ratio ratio-16x9">
+                                <iframe src="@video.Url" title="@video.Title" frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
+                                        class="rounded-top-4">
+                                </iframe>
+                            </div>
+                            <div class="card-body d-flex flex-column p-4">
+                                <h5 class="text-dark fw-bold">@video.Title</h5>
+                                <p class="card-text text-muted">🕒 Ngày cập nhật: @video.CreatedAt</p>
+                                <button class="btn btn-outline-primary mt-auto fw-bold" data-bs-toggle="modal" data-bs-target="#videoModal-@video.Id">
+                                    Xem chi tiết
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal hiển thị video chi tiết -->
+                    <div class="modal fade" id="videoModal-@video.Id" tabindex="-1" aria-labelledby="videoModalLabel-@video.Id" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                            <div class="modal-content rounded-4 border-0 shadow-lg">
+                                <div class="modal-header bg-primary text-white rounded-top-4">
+                                    <h5 class="modal-title fw-bold" id="videoModalLabel-@video.Id">@video.Title</h5>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body p-4 text-center">
+                                    <div class="ratio ratio-16x9 rounded-4 overflow-hidden shadow-sm">
+                                        <iframe src="@video.Url" title="@video.Title" frameborder="0"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                                        </iframe>
+                                    </div>
+                                    <p class="mt-3 text-muted fs-6">🕒 Ngày đăng: @video.CreatedAt</p>
+                                </div>
+                                <div class="modal-footer d-flex justify-content-center">
+                                    <button type="button" class="btn btn-secondary px-4 py-2" data-bs-dismiss="modal">Đóng</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Sidebar phải: Sản phẩm nổi bật -->
+        <div class="col-lg-3">
+            <div class="bg-light p-4 rounded shadow-lg">
+                <h4 class="text-primary fw-bold text-center">🛒 Sản Phẩm Nổi Bật</h4>
+                <hr class="border-primary">
+
+                @foreach (var product in Model.products.Take(3)) // Hiển thị 3 sản phẩm nổi bật
+                {
+                    <div class="mb-3 text-center">
+                        <img src="@product.ImageUrl" class="img-fluid rounded shadow-sm" alt="@product.ProductName">
+                        <h6 class="fw-bold mt-2">@product.ProductName</h6>
+                        <p class="text-danger fw-bold">$@product.Price</p>
+                        <a asp-action="Details" asp-route-id="@product.ProductId" class="btn btn-sm btn-outline-primary">Xem chi tiết</a>
+                        <hr>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="my-5"></div>

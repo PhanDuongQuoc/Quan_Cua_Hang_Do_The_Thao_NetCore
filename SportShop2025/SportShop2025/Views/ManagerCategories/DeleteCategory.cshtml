@@ -1,0 +1,62 @@
+﻿@model SportShop2025.Data.Category
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="category-container">
+    <h4 class="category-title">Category Detail</h4>
+    <hr />
+    <hr />
+
+    @if (ViewBag.MessageDelete != null)
+    {
+        <div class="alert-success MessageDelete">
+            @ViewBag.MessageDelete
+        </div>
+    }
+
+    @if (ViewBag.MessageDeleteSuccess != null)
+    {
+        <div class="alert-success MessageDeleteSuccess">
+            @ViewBag.MessageDeleteSuccess
+        </div>
+    }
+
+    @if (ViewBag.MessageNoDelete != null)
+    {
+        <div class="alert-success MessageNoDelete">
+            @ViewBag.MessageNoDelete
+        </div>
+    }
+
+    <hr />
+    <dl class="product-details row">
+        <!-- Thêm class giống như của Product -->
+        <dt class="product-label col-sm-2">
+            <!-- Thêm class giống như của Product -->
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </dt>
+        <dd class="product-value col-sm-10">
+            <!-- Thêm class giống như của Product -->
+            @Html.DisplayFor(model => model.CategoryName)
+        </dd>
+        <dt class="product-label col-sm-2">
+            <!-- Thêm class giống như của Product -->
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="product-value col-sm-10">
+            <!-- Thêm class giống như của Product -->
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+
+    <!-- Phần Delete Form -->
+    <div class="product-actions">
+        <form asp-action="ConfirmDeleteCategory">
+            <input type="hidden" asp-for="CategoryId" />
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            <a asp-action="ListCategories" class="btn btn-back">Back to List</a>
+        </form>
+    </div>
+</div>

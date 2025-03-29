@@ -1,0 +1,94 @@
+﻿@model SportShop2025.ViewModel.CartViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center my-4 text-uppercase fw-bold">🛒 Giỏ Hàng Của Bạn</h2>
+
+@if (Model.Items.Count == 0)
+{
+    <div class="alert alert-warning text-center p-4">
+        <h5>Giỏ hàng của bạn đang trống 😢</h5>
+        <a href="@Url.Action("Index", "ProductHome")" class="btn btn-primary mt-3">
+            <i class="bi bi-shop"></i> Tiếp tục mua sắm
+        </a>
+    </div>
+}
+else
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card shadow-lg border-0 rounded-4">
+                    <div class="card-body p-4">
+                        <table class="table table-hover align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Sản phẩm</th>
+                                    <th class="text-center">Giá</th>
+                                    <th class="text-center">Số lượng</th>
+                                    <th class="text-center">Tổng</th>
+                                    <th class="text-center">Hành động</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Items)
+                                {
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="@item.Image" alt="@item.ProductName" class="rounded-3 me-3" style="width: 60px; height: 60px;">
+                                                <span class="fw-bold">@item.ProductName</span>
+                                            </div>
+                                        </td>
+                                        <td class="text-center fw-bold text-danger">$@item.Price.ToString("N2")</td>
+                                        <td class="text-center">
+                                            <span class="badge bg-primary fs-6">@item.Quantity</span>
+                                        </td>
+                                        <td class="text-center fw-bold text-success">$@item.TotalPrice.ToString("N2")</td>
+                                        <td class="text-center">
+                                            <a href="@Url.Action("RemoveFromCart", "Cart", new { productId = item.ProductId })" class="btn btn-danger btn-sm">
+                                                <i class="bi bi-trash"></i>
+                                            </a>
+                                            <a href="@Url.Action("AddToCart", "Cart", new { productId = item.ProductId })" class="btn btn-success btn-sm">
+                                                <i class="bi bi-plus-circle"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card shadow-lg border-0 rounded-4">
+                    <div class="card-body p-4">
+                        <h4 class="fw-bold text-uppercase">Tóm tắt đơn hàng</h4>
+                        <hr>
+                        <div class="d-flex justify-content-between">
+                            <span class="fw-bold">Tổng:</span>
+                            <span class="fw-bold text-danger fs-5">$@Model.Total.ToString("N2")</span>
+                        </div>
+                        <hr>
+                        <a href="#" class="btn btn-success w-100 fw-bold py-2">
+                            <i class="bi bi-credit-card"></i> Thanh Toán
+                        </a>
+                        <a href="@Url.Action("ClearCart", "Cart")" class="btn btn-outline-danger w-100 fw-bold py-2 mt-2">
+                            <i class="bi bi-trash3"></i> Xóa Giỏ Hàng
+                        </a>
+                        <a href="@Url.Action("Index", "ProductHome")" class="btn btn-outline-secondary w-100 fw-bold py-2 mt-2">
+                            <i class="bi bi-arrow-left"></i> Tiếp tục mua sắm
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<br />
+<br />
+<br />

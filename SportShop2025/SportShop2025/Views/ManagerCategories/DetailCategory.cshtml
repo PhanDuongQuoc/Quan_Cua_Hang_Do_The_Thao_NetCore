@@ -1,0 +1,36 @@
+﻿@model SportShop2025.Data.Category
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="product-container">
+   
+    <h4 class="product-title">Category Detail</h4> 
+    <hr />
+    <dl class="product-details row">
+
+        <dt class="product-label col-sm-2">
+         
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </dt>
+        <dd class="product-value col-sm-10">
+   
+            @Html.DisplayFor(model => model.CategoryName)
+        </dd>
+        <dt class="product-label col-sm-2">
+    
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="product-value col-sm-10">
+         
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+</div>
+
+<div class="product-actions">
+
+    <a asp-action="Edit" asp-route-id="@Model?.CategoryId" class="btn btn-edit">Edit</a> |
+    <a asp-action="ListCategories" class="btn btn-back">Back to List</a>
+</div>

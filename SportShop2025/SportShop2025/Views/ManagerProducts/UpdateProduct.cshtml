@@ -1,0 +1,102 @@
+﻿@model SportShop2025.Data.Product
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="container-add">
+    <h2 class="title">Update Product</h2>
+    <hr />
+
+    @if (ViewBag.SuccessMessage != null)
+    {
+        <div class="alert-success SuccessMessage">
+            @ViewBag.SuccessMessage
+        </div>
+    }
+    @if (ViewBag.MessageNoDelete != null)
+    {
+        <div class="alert-success MessageNoDelete">
+            @ViewBag.MessageNoDelete
+        </div>
+    }
+
+    <div class="form-container">
+        <form asp-action="ConfirmUpadteProduct" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ProductId" />
+
+            <!-- Nhóm 2 input ngang hàng -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label asp-for="ProductName"></label>
+                    <input asp-for="ProductName" class="input-field" />
+                    <span asp-validation-for="ProductName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="CategoryId"></label>
+                    <select asp-for="CategoryId" class="input-field" asp-items="ViewBag.CategoryId"></select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label asp-for="Brand"></label>
+                    <input asp-for="Brand" class="input-field" />
+                    <span asp-validation-for="Brand" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Size"></label>
+                    <input asp-for="Size" class="input-field" />
+                    <span asp-validation-for="Size" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label asp-for="Color"></label>
+                    <input asp-for="Color" class="input-field" />
+                    <span asp-validation-for="Color" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Price"></label>
+                    <input asp-for="Price" class="input-field" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label asp-for="StockQuantity"></label>
+                    <input asp-for="StockQuantity" class="input-field" />
+                    <span asp-validation-for="StockQuantity" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ImageUrl"></label>
+                    <input asp-for="ImageUrl" class="input-field" />
+                    <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Description"></label>
+                <textarea asp-for="Description" class="input-field"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group btn-container">
+                <input type="submit" value="Save" class="btn-submit" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="back-link">
+    <a asp-action="ListProduct">← Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

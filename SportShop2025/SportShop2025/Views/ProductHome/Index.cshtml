@@ -1,0 +1,117 @@
+﻿@model SportShop2025.ViewModel.HomeViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*Slider*@
+
+<section id="intro" class="position-relative mt-4">
+    <div class="container-lg">
+        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                @if (Model.slides != null && Model.slides.Any())
+                {
+                    var firstSlide = true;
+                    @foreach (var slide in Model.slides)
+                    {
+                        <div class="carousel-item @(firstSlide ? "active" : "")">
+                            <img style="height:500px;" src="@slide.Image" class="d-block w-100" alt="Slide Image">
+                            <div class="carousel-caption d-none d-md-block">
+                            </div>
+                        </div>
+                        firstSlide = false;
+                    }
+                }
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+</section>
+
+<section class="discount-coupon py-2 my-2 py-md-5 my-md-5">
+    <div class="container">
+        <div class="bg-gray coupon position-relative p-5">
+            <div class="bold-text position-absolute">10% OFF</div>
+            <div class="row justify-content-between align-items-center">
+                <div class="col-lg-7 col-md-12 mb-3">
+                    <div class="coupon-header">
+                        <h2 class="display-7">10% OFF Discount Coupons</h2>
+                        <p class="m-0">Subscribe us to get 10% OFF on all the purchases</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-12">
+                    <div class="btn-wrap">
+                        <a href="#" class="btn btn-black btn-medium text-uppercase hvr-sweep-to-right">Email me</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="featured-products" class="py-5 bg-light">
+    <div class="container-md">
+        <!-- Tiêu đề + Nút -->
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h2 class="section-title text-uppercase fw-bold text-primary">🛒 All Products</h2>
+            <a asp-action="Index" asp-controller="ProductHome" class="btn btn-outline-primary fw-bold px-4 py-2">
+                View All <i class="bi bi-arrow-right"></i>
+            </a>
+        </div>
+
+        <!-- Danh sách sản phẩm -->
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+            @foreach (var pr in Model.products)
+            {
+                <div class="col">
+                    <div class="card h-100 shadow-lg border-0 rounded-4 position-relative">
+                        <!-- Ảnh sản phẩm -->
+                        <a asp-action="Details" asp-route-id="@pr.ProductId" class="overflow-hidden rounded-top-4">
+                            <img src="@pr.ImageUrl" alt="@pr.ProductName" class="card-img-top product-image img-fluid rounded-top-4">
+                        </a>
+
+                        <!-- Nội dung sản phẩm -->
+                        <div class="card-body d-flex flex-column p-3">
+                            <h5 class="text-dark fw-bold">
+                                <a asp-action="Details" asp-route-id="@pr.ProductId" class="text-decoration-none text-dark">
+                                    @pr.ProductName
+                                </a>
+                            </h5>
+                            <span class="card-price fw-bold text-danger fs-5">$@pr.Price</span>
+                            <a href="@Url.Action("AddToCart", "Cart", new { productId = pr.ProductId, productName = pr.ProductName,image = pr.ImageUrl, price = pr.Price })" class="btn btn-primary">
+                                <button class="btn btn-primary mt-auto fw-bold w-100">
+                                    <i class="bi bi-cart-plus"></i> Add to Cart
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <!-- Pagination -->
+        <div class="d-flex justify-content-center mt-4">
+            <nav>
+                <ul class="pagination">
+                    @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                    {
+                        <li class="page-item @(ViewBag.CurrentPage == i ? "active" : "")">
+                            <a class="page-link" asp-action="Index" asp-route-page="@i">@i</a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+
+
+

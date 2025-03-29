@@ -1,0 +1,64 @@
+﻿@model SportShop2025.Data.Order
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h4>Order</h4>
+<hr />
+
+@if (ViewBag.SuccessMessage != null)
+{
+    <div class="alert-success SuccessMessage">
+        @ViewBag.SuccessMessage
+    </div>
+}
+@if (ViewBag.MessageNoDelete != null)
+{
+    <div class="alert-success MessageNoDelete">
+        @ViewBag.MessageNoDelete
+    </div>
+}
+
+<div class="container-add">
+    <div class="form-container">
+        <form asp-action="ConfirmEdit" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="OrderId" />
+
+            <div class="form-group">
+                <label asp-for="CustomerId" class="control-label"></label>
+                <select asp-for="CustomerId" class="input-field" asp-items="ViewBag.CustomerId"></select>
+                <span asp-validation-for="CustomerId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="OrderDate" class="control-label"></label>
+                <input asp-for="OrderDate" class="input-field" />
+                <span asp-validation-for="OrderDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="TotalAmount" class="control-label"></label>
+                <input asp-for="TotalAmount" class="input-field" />
+                <span asp-validation-for="TotalAmount" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="input-field" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+
+            <div class="form-group btn-container">
+                <input type="submit" value="Save" class="btn-submit" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="back-link">
+    <a asp-action="ListOrder">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

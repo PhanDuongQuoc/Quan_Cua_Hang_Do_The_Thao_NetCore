@@ -1,0 +1,66 @@
+﻿@model SportShop2025.Data.Order
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="category-container">
+    <h4 class="category-title">Order Detail</h4>
+    <hr />
+    <hr />
+
+    @if (ViewBag.MessageDelete != null)
+    {
+        <div class="alert-success MessageDelete">
+            @ViewBag.MessageDelete
+        </div>
+    }
+
+    @if (ViewBag.MessageDeleteSuccess != null)
+    {
+        <div class="alert-success MessageDeleteSuccess">
+            @ViewBag.MessageDeleteSuccess
+        </div>
+    }
+
+    @if (ViewBag.MessageNoDelete != null)
+    {
+        <div class="alert-success MessageNoDelete">
+            @ViewBag.MessageNoDelete
+        </div>
+    }
+
+    <hr />
+    <dl class="product-details row">
+        <dt class="product-label col-sm-2">
+            @Html.DisplayNameFor(model => model.OrderDate)
+        </dt>
+        <dd class="product-value col-sm-10">
+            @Html.DisplayFor(model => model.OrderDate)
+        </dd>
+        <dt class="product-label col-sm-2">
+            @Html.DisplayNameFor(model => model.TotalAmount)
+        </dt>
+        <dd class="product-value col-sm-10">
+            @Html.DisplayFor(model => model.TotalAmount)
+        </dd>
+        <dt class="product-label col-sm-2">
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd class="product-value col-sm-10">
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+        <dt class="product-label col-sm-2">
+            @Html.DisplayNameFor(model => model.Customer)
+        </dt>
+        <dd class="product-value col-sm-10">
+            @Html.DisplayFor(model => model.Customer.CustomerId)
+        </dd>
+    </dl>
+
+    <div class="product-actions">
+        <form asp-action="ConfirmDeleteOrder">
+            <input type="hidden" asp-for="OrderId" />
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            <a asp-action="ListOrder" class="btn btn-back">Back to List</a>
+        </form>
+    </div>
+</div>

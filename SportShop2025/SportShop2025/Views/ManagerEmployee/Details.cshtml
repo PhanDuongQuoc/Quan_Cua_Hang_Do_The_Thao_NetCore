@@ -1,0 +1,50 @@
+﻿@model SportShop2025.Data.Employee
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="product-container">
+    <h4 class="product-title">Employee Detail</h4>
+    <hr />
+    <dl class="product-details row">
+        <dt class="product-label col-sm-2">
+            @Html.DisplayNameFor(model => model.FullName)
+        </dt>
+        <dd class="product-value col-sm-10">
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+        <dt class="product-label col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class="product-value col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class="product-label col-sm-2">
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+        <dd class="product-value col-sm-10">
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+        <dt class="product-label col-sm-2">
+            @Html.DisplayNameFor(model => model.HireDate)
+        </dt>
+        <dd class="product-value col-sm-10">
+            @Html.DisplayFor(model => model.HireDate)
+        </dd>
+        <dt class="product-label col-sm-2">
+            @Html.DisplayNameFor(model => model.Position)
+        </dt>
+        <dd class="product-value col-sm-10">
+            @Html.DisplayFor(model => model.Position)
+        </dd>
+        <dt class="product-label col-sm-2">
+            @Html.DisplayNameFor(model => model.Salary)
+        </dt>
+        <dd class="product-value col-sm-10">
+            @Html.DisplayFor(model => model.Salary)
+        </dd>
+    </dl>
+</div>
+<div class="product-actions">
+    <a asp-action="Edit" asp-route-id="@Model?.EmployeeId" class="btn btn-edit">Edit</a> |
+    <a asp-action="ListEmployee" class="btn btn-back">Back to List</a>
+</div>

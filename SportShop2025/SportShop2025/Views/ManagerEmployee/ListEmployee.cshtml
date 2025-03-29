@@ -1,0 +1,55 @@
+﻿@model IEnumerable<SportShop2025.Data.Employee>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <h2>Employee List</h2>
+    <br />
+
+    <search>
+        <form method="get" asp-action="ListEmployee" asp-controller="ManagerEmployee">
+            <input name="name" id="name" placeholder="Search pdqsportshop.com" value="@ViewBag.Data" />
+            <button type="submit">Search</button>
+        </form>
+    </search>
+    <br />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.FullName)</th>
+                <th>@Html.DisplayNameFor(model => model.Email)</th>
+                <th>@Html.DisplayNameFor(model => model.Phone)</th>
+                <th>@Html.DisplayNameFor(model => model.HireDate)</th>
+                <th>@Html.DisplayNameFor(model => model.Position)</th>
+                <th>@Html.DisplayNameFor(model => model.Salary)</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.FullName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Phone)</td>
+                    <td>@Html.DisplayFor(modelItem => item.HireDate)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Position)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Salary)</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.EmployeeId" class="btn btn-edit">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.EmployeeId" class="btn btn-details">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.EmployeeId" class="btn btn-delete">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <br />
+    <a asp-action="Create" class="btn-create">Create New Employee</a>
+    @if (@ViewBag.Data != null)
+    {
+        <a asp-action="ListEmployee" class="btn-create"> Back To List </a>
+    }
+</div>

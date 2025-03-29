@@ -1,0 +1,109 @@
+﻿<!-- Desktop sidebar -->
+<aside class="z-20 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block flex-shrink-0">
+    <div class="py-4 text-gray-500 dark:text-gray-400">
+        <a asp-action="Index" asp-controller="ProductHome" class="navbar-brand">
+            <img style="width: 130px; margin-left: auto; margin-right: auto;" src="https://img.freepik.com/premium-vector/sports-team-logo-with-handshake_339976-60098.jpg?w=360" class="logo" alt="logo">
+        </a>
+
+        <ul class="mt-6">
+            <li class="relative px-6 py-3">
+                <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+                      aria-hidden="true"></span>
+                <a class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
+                   asp-action="Index" asp-controller="Home">
+                    <i class="bi bi-house-door-fill"></i>
+                    <span class="ml-4">Dashboard</span>
+                </a>
+            </li>
+        </ul>
+
+        <ul>
+            <li class="relative px-6 py-3">
+                <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                   asp-action="ListProduct" asp-controller="ManagerProducts">
+                    <i class="bi bi-box-seam"></i>
+                    <span class="ml-4">Manager Product</span>
+                </a>
+            </li>
+
+            <li class="relative px-6 py-3">
+                <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                   asp-action="ListCategories" asp-controller="ManagerCategories">
+                    <i class="bi bi-tags-fill"></i>
+                    <span class="ml-4">Manager Categories</span>
+                </a>
+            </li>
+
+            <li class="relative px-6 py-3">
+                <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                   asp-action="ListCustomer" asp-controller="ManagerCustomer">
+                    <i class="bi bi-people-fill"></i>
+                    <span class="ml-4">Manager Customer</span>
+                </a>
+            </li>
+
+            <li class="relative px-6 py-3">
+                <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                   asp-action="ListEmployee" asp-controller="ManagerEmployee">
+                    <i class="bi bi-person-badge-fill"></i>
+                    <span class="ml-4">Manager Employee</span>
+                </a>
+            </li>
+
+            <li class="relative px-6 py-3">
+                <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                   asp-action="ListOrder" asp-controller="ManagerOrder">
+                    <i class="bi bi-cart-fill"></i>
+                    <span class="ml-4">Manager Order</span>
+                </a>
+            </li>
+
+            <li class="relative px-6 py-3">
+                <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                   asp-action="ListOrderDetail" asp-controller="ManagerOrderDetail">
+                    <i class="bi bi-file-text-fill"></i>
+                    <span class="ml-4">Manager Order Detail</span>
+                </a>
+            </li>
+
+            <li class="relative px-6 py-3">
+                <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                   asp-action="ListPayment" asp-controller="ManagerPayment">
+                    <i class="bi bi-credit-card-fill"></i>
+                    <span class="ml-4">Manager Payment</span>
+                </a>
+            </li>
+
+            <li class="relative px-6 py-3">
+                <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                   asp-action="ListSlide" asp-controller="ManagerSlider">
+                    <i class="bi bi-sliders"></i>
+                    <span class="ml-4">Manager Slide</span>
+                </a>
+            </li>
+
+            <li class="relative px-6 py-3">
+                <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                   asp-action="ListBlog" asp-controller="ManagerBlog">
+                    <i class="bi bi-journal-text"></i>
+                    <span class="ml-4">Manager Blog</span>
+                </a>
+            </li>
+
+            <li class="relative px-6 py-3">
+                <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                   asp-action="ListVideo" asp-controller="ManagerVideo">
+                    <i class="bi bi-camera-reels-fill"></i>
+                    <span class="ml-4">Manager Video</span>
+                </a>
+            </li>
+        </ul>
+
+        <div class="px-6 my-6">
+            <button class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                Create account
+                <span class="ml-2" aria-hidden="true">+</span>
+            </button>
+        </div>
+    </div>
+</aside>

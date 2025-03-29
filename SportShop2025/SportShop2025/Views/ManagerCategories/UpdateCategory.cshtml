@@ -1,0 +1,49 @@
+﻿@model SportShop2025.Data.Category
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h4>Category</h4>
+<hr />
+
+@if (ViewBag.SuccessMessage != null)
+{
+    <div class="alert-success SuccessMessage">
+        @ViewBag.SuccessMessage
+    </div>
+}
+@if (ViewBag.MessageNoDelete != null)
+{
+    <div class="alert-success MessageNoDelete">
+        @ViewBag.MessageNoDelete
+    </div>
+}
+
+<div class="container-add">
+    <div class="form-container">
+        <form asp-action="ConfirmUpdateCategory" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="CategoryId" />
+            <div class="form-group">
+                <label asp-for="CategoryName" class="control-label"></label>
+                <input asp-for="CategoryName" class="input-field" />
+                <span asp-validation-for="CategoryName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="input-field" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group btn-container">
+                <input type="submit" value="Save" class="btn-submit" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="back-link">
+    <a asp-action="ListCategories">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<SportShop2025.Data.Category>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="container">
+    <h2>Category List: @ViewBag.CountCategory </h2>
+    <br />
+    <form method="get" asp-action="ListCategories" asp-controller="ManagerCategories" class="filter-form">
+        <div class="form-group">
+            <label for="categoryId" class="form-label">Choose category product:</label>
+            <select name="categoryId" id="categoryId" class="form-select" onchange="this.form.submit()">
+                <option value="">All</option>
+                @foreach (var category in ViewBag.Categories)
+                {
+                    <option value="@category.CategoryId" selected="@(ViewBag.SelectedCategory == category.CategoryId ? "selected" : null)">
+                        @category.CategoryName
+                    </option>
+                }
+            </select>
+        </div>
+    </form>
+    <br />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.CategoryName)</th>
+                <th>@Html.DisplayNameFor(model => model.Description)</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.CategoryName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                    <td>
+                        <a asp-action="UpdateCategory" asp-route-CategoryId="@item.CategoryId" class="btn btn-edit">Edit</a> |
+                        <a asp-action="DetailCategory" asp-route-CategoryId="@item.CategoryId" class="btn btn-details">Details</a> |
+                        <a asp-action="DeleteCategory" asp-route-CategoryId="@item.CategoryId" class="btn btn-delete">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+    <a asp-action="CreateCategories" class="btn-create">Create New Category</a>
+</div>
